@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+body {
+    margin: 40px;
+    background-color: #fffaf0;
+    font-family: Pacifico, cursive;
+    text-align: center;
+}
+
+h1 {
+    font-size: 50px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+form {
+    margin-top: 30px;
+}
+
+input {
+    padding: 10px;
+    font-size: 18px;
+    width: 250px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.weather-card {
+    margin: 40px auto;
+    padding: 25px;
+    width: 350px;
+    background-color: #fff8e7;
+    border-radius: 15px;
+}
+
+.weather-card p {
+    font-size: 20px;
+}
+
+.error {
+    margin-top: 30px;
+    font-size: 20px;
+}
