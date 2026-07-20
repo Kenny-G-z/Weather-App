@@ -11,10 +11,12 @@ h1 {
     font-size: 50px;
     text-decoration: underline;
     font-weight: bold;
+    text-shadow: 0 0 15px #00BFFF;
 }
 
 h2 {
     font-size: 30px;
+    text-shadow: 0 0 15px #00BFFF;
 }
 
 form {
@@ -38,7 +40,8 @@ button {
     margin: 40px auto;
     padding: 25px;
     width: 350px;
-    background-color: #fff8e7;
+    background-color: #7DF9FF;
+    text-shadow: 0 0 15px #00BFFF;
     border-radius: 15px;
 }
 
