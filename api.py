@@ -38,7 +38,6 @@ def get_weather(city):
         "low": f'{weather_data["main"]["temp_min"]:.1f}°F',
         "humidity": f'{weather_data["main"]["humidity"]}%',
         "feels like": f'{weather_data["main"]["feels_like"]:.1f}°F',
-        "precipitation": f'{round(weather_data.get("rain", {}).get("1h", 0) * 100)}%',
         "temp_diff":weather_data["main"]["temp"] >= weather_data["main"]["feels_like"]
     }
 
@@ -53,6 +52,7 @@ def get_weather(city):
 
         if forecast_time <= current_time:
             continue
+        
         if late_night:
             if forecast_time.date() == today:
                 pass
