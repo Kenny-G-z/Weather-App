@@ -29,7 +29,7 @@ def home():
         "Website.html",
         weather=weather,
         error=error,
-        theme=theme
-    )
+        theme=theme)
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
