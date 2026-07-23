@@ -1,22 +1,30 @@
 <!DOCTYPE html>
+
 <html>
-    
+
 <head>
     <title>Weather App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
 </head>
 
-<body>
+<body class="{{ theme }}">
     <h1>Weather App</h1>
 
-    <form method="POST">
+    <form method="POST" autocomplete="off">
+        <input type="hidden" name="theme" value="{{ theme }}">
 
-        <input type="text" name="city" placeholder="Enter a city">
+        <input
+            type="search"
+            name="city"
+            placeholder="Enter a city"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            required
+        >
 
-        <button type="submit">
-            Get Weather
-        </button>
-
+        <button type="submit">Get Weather</button>
     </form>
 
     {% if error %}
@@ -24,21 +32,54 @@
         <p class="error">{{ error }}</p>
 
     {% endif %}
-    
+
     {% if weather %}
 
-    <div class="weather-card">
-
+    <div class="weather-results">
         <h2>Weather Results</h2>
-        <p>Weather: {{ weather["weather"] }}</p>
-        <p>Temperature: {{ weather["temperature"] }}</p>
-        <p>Humidity: {{ weather["humidity"] }}</p>
-        <p>Feels Like: {{ weather["feels like"] }}</p>
-        <p>Sunrise: {{ weather["sunrise"] }}</p>
-        <p>Sunset: {{ weather["sunset"] }}</p>
+        <h3 class="sunrise">Sunrise: {{ weather["sunrise"] }}</h3>
+        <h3 class="high">High: {{ weather["current"]["high"] }}</h3>
+
+        <div class="forecast-window">
+            <div class="forecast-row">
+                <div class="weather-card">
+                    <h2>Now</h2>
+
+                    <p>Weather: {{ weather["current"]["weather"] }}</p>
+                    <p class="{% if weather['current']['temp_diff'] %}highlight{% endif %}">Temperature: {{ weather["current"]["temperature"] }}</p>
+                    <p class="{% if not weather['current']['temp_diff'] %}highlight{% endif %}">Feels Like: {{ weather["current"]["feels like"] }}</p>
+                    <p class="precipitation">Precipitation: {{ weather["current"]["precipitation"] }}</p>
+                    <p>Humidity: {{ weather["current"]["humidity"] }}</p>
+                </div>
+
+                {% for forecast in weather["forecasts"] %}
+
+                <div class="weather-card">
+                    <h2>{{ forecast["time"] }}</h2>
+                    <p>Weather: {{ forecast["weather"] }}</p>
+                    <p class="{% if forecast['temp_diff'] %}highlight{% endif %}">Temperature: {{ forecast["temperature"] }}</p>
+                    <p class="{% if not forecast['temp_diff'] %}highlight{% endif %}">Feels Like: {{ forecast["feels like"] }}</p>
+                    <p class="precipitation">Precipitation: {{ forecast["precipitation"] }}</p>
+                    <p>Humidity: {{ forecast["humidity"] }}</p>
+                </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <h3 class="low">Low: {{ weather["current"]["low"] }}</h3>
+        <h3 class="sunset">Sunset: {{ weather["sunset"] }}</h3>
     </div>
 
     {% endif %}
+
+    <hr class="footer-line">
+
+    <footer>
+        <p>Created by Kenny</p>
+        <a href="https://github.com/Kenny-G-z" target="_blank">View my GitHub</a>
+    </footer>
 </body>
 
 </html>
